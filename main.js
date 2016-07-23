@@ -1,8 +1,7 @@
-/* global $,angular,require,monaco */
+/* global $,monaco */
 
-var module = angular.module("app", ["ngMaterial"]);
-
-module.controller("body", ($scope) => {
+/* exported */
+function Body($scope) {
 	function Cloudant(method, path) {
 		return $.ajax({
 			method: method,
@@ -25,4 +24,4 @@ module.controller("body", ($scope) => {
 			$scope.$apply();
 		});
 	};
-});
+}
