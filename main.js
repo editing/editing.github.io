@@ -1,9 +1,9 @@
 /* global $,angular,require,monaco */
 
-angular.module("app", ["material"]).controller("body", ($scope) => {
-	require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
-	require(['vs/editor/editor.main'], function () {
+require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+require(['vs/editor/editor.main'], function () {
 
+	angular.module("app", ["ngMaterial"]).controller("body", ($scope) => {
 		function Cloudant(method, path) {
 			return $.ajax({
 				method: method,
