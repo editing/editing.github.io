@@ -11,9 +11,9 @@ function Body($scope) {
 	/** @type {monaco.editor.IStandaloneCodeEditor} */
 	var editor;
 	$scope.login = function () {
-		PromiseMonaco.then(() => {
-			var provider = new firebase.auth.GithubAuthProvider();
-			return firebase.auth().signInWithPopup(provider);
+		var provider = new firebase.auth.GithubAuthProvider();
+		firebase.auth().signInWithPopup(provider).then((result) => {
+			return PromiseMonaco.then(() => result);
 		}, (err) => console.error(err)).then((result) => {
 			if (!editor) {
 				editor = monaco.editor.create(document.getElementById('container'), { language: 'json' });
