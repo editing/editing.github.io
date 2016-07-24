@@ -9,6 +9,18 @@
 	<!-- Angular Material style sheet -->
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 
+	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyA4iSlM-2iNOwKgS6925jGSQAc32ebk2TI",
+			authDomain: "thainayu.firebaseapp.com",
+			databaseURL: "https://thainayu.firebaseio.com",
+			storageBucket: "thainayu.appspot.com",
+		};
+		firebase.initializeApp(config);
+	</script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 	<!-- Angular Material requires Angular.js Libraries -->
@@ -21,17 +33,17 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js">
 
     <script src="/node_modules/requirejs/require.js"></script>
-    <script src="/node_modules/monaco-editor/min/vs/loader.js"></script>
+	<script src="/node_modules/monaco-editor/min/vs/loader.js"></script>
 	<script src="main.js"></script>
 
 	<style>
 		md-input-container {
-			margin-bottom:1px;
+			margin-bottom: 1px;
 		}
 
 		md-input-container .md-errors-spacer {
-			min-width:1px;
-			min-height:1px;
+			min-width: 1px;
+			min-height: 1px;
 		}
 	</style>
 </head>

@@ -40,10 +40,6 @@
         "id-match": "error",
         "indent": "off",
         "jsx-quotes": "error",
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
         "lines-around-comment": "error",
         "multiline-ternary": "error",
         "new-parens": "error",
