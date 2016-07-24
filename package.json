@@ -1,0 +1,23 @@
+{
+  "name": "mongit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "monaco-editor": "^0.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/librarinth/monaco.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/librarinth/monaco.github.io/issues"
+  },
+  "homepage": "https://github.com/librarinth/monaco.github.io#readme"
+}
