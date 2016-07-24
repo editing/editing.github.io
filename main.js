@@ -36,7 +36,7 @@ function Body($scope) {
 				editor.getModel().detectIndentation(false,4);
 			}
 
-			return PromiseMonaco.then(data);
+			return PromiseMonaco.then(() => data);
 		}, (err) => console.error(err)).then((data) => {
 			editor.setValue(JSON.stringify(data));
 		});
