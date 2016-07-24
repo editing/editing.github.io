@@ -1,18 +1,21 @@
-/* global $,monaco,require */
+/* global $,monaco:monaco,require:require */
 
 var resolver;
-var monacoInstance;
+
+/** @type {monaco} */
+var monacoInstance = monaco;
 require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' } });
-require(['vs/editor/editor.main'], function () {
+var requireMonaco = require(['vs/editor/editor.main'], function () {
 	monacoInstance = monaco;
 	if (resolver)
-		resolver(monacoInstance);
+		resolver(monaco);
 });
 
+/** @type {Promise<monaco>} */
 var PromiseMonaco = new Promise((resolve) => {
 	resolver = resolve;
 	if (monacoInstance)
-		resolve(monacoInstance);
+		resolve(monaco);
 });
 
 /* exported */

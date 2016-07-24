@@ -12,12 +12,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/librarinth/monaco.github.io.git"
+    "url": "git+https://github.com/librarinth/monaco.git"
   },
-  "author": "",
+  "author": "Thaina Yu",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/librarinth/monaco.github.io/issues"
-  },
-  "homepage": "https://github.com/librarinth/monaco.github.io#readme"
+  "typescript":{
+    "definition":"node_modules/monaco-editor/monaco.d.ts"
+  }
 }
