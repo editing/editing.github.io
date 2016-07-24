@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 
-<head ng-app="app">
+<head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
@@ -20,13 +20,12 @@
 
     <script src="monaco-editor/min/vs/loader.js"></script>
 	<script src="main.js"></script>
-
-	<script>
-		angular.module("app", ["ngMaterial"]).controller("body",Body);
-	</script>
 </head>
 
 <body ng-controller="body">
+	<script>
+		angular.module("app",["ngMaterial"]).controller("body",Body);
+	</script>
 	<div layout="row">
 		<md-input-container><input type="text" ng-model="user" placeholder="UserName" /></md-input-container>
 		<md-input-container><input type="password" ng-model="pass" placeholder="Password" /></md-input-container>
