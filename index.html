@@ -35,17 +35,6 @@
     <script src="/node_modules/requirejs/require.js"></script>
 	<script src="/node_modules/monaco-editor/min/vs/loader.js"></script>
 	<script src="main.js"></script>
-
-	<style>
-		md-input-container {
-			margin-bottom: 1px;
-		}
-
-		md-input-container .md-errors-spacer {
-			min-width: 1px;
-			min-height: 1px;
-		}
-	</style>
 </head>
 
 <body ng-controller="body">
@@ -53,10 +42,7 @@
 		angular.module("app",["ngMaterial"]).controller("body",Body);
 	</script>
 	<div layout="row">
-		<md-input-container><input type="text" ng-model="user" placeholder="UserName" /></md-input-container>
-		<md-input-container><input type="password" ng-model="pass" placeholder="Password" /></md-input-container>
-		<md-input-container><input type="text" ng-model="domain" placeholder="Domain" /></md-input-container>
-		<md-button class="md-raised" ng-click="login()">LogIn</md-button>
+		<md-button class="md-raised" ng-click="login()">LogIn GitHub</md-button>
 	</div>
 	<div layout="row">
 		<div layout="column">
