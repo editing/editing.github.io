@@ -2,15 +2,16 @@
 
 /* exported */
 function Body($scope) {
-	function GetCloudant(path) {
+	function Cloudant(method,path) {
 		return $.get({
+			method:method,
 			headers: { Authorization : "Basic " + btoa($scope.user + ":" + $scope.pass) },
 			url: "https://" + $scope.domain + ".cloudant.com" + encodeURIComponent(path)
 		});
 	}
 
 	$scope.login = function () {
-		GetCloudant("GET", "/_users/_all_docs?startkey='_design/'&endkey='_design/\uFFFF'").then((data, status) => {
+		Cloudant("GET", "/_users/_all_docs?startkey='_design/'&endkey='_design/\uFFFF'").then((data, status) => {
 			$scope.status = status;
 			$scope.$apply();
 
