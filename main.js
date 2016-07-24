@@ -2,7 +2,7 @@
 
 var resolver;
 var monacoInstance;
-require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' } });
 require(['vs/editor/editor.main'], function () {
 	monacoInstance = monaco;
 	if (resolver)
