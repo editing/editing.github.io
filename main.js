@@ -1,12 +1,9 @@
 /* global $,monaco:monaco,require:require */
 
-/** @type {monaco} */
 require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' } });
-
-/** @type {Promise<monaco>} */
 var PromiseMonaco = new Promise((resolve) => {
 	require(['vs/editor/editor.main'], function () {
-		resolve(monaco);
+		resolve();
 	});
 });
 
@@ -31,8 +28,8 @@ function Body($scope) {
 			$scope.status = status;
 			$scope.$apply();
 		}).then((data) => {
-			return Promise.all([PromiseMonaco, data]);
-		}, (err) => console.error(err)).then(([monaco, data]) => {
+			return PromiseMonaco.then(data);
+		}, (err) => console.error(err)).then((data) => {
 			monaco.editor.create(document.getElementById('container'), {
 				language: 'json',
 				value: JSON.stringify(data)
