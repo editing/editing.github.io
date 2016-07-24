@@ -11,7 +11,7 @@ function Body($scope) {
 	}
 
 	$scope.login = function () {
-		Cloudant("GET", "/_users/_all_docs?startkey='_design/'&endkey='_design/\uFFFF'").then((data, status) => {
+		Cloudant("GET", "/_users/_all_docs?startkey=\"_design/\"&endkey=\"_design/\uFFFF\"").then((data, status) => {
 			$scope.status = status;
 			$scope.$apply();
 
