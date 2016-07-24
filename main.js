@@ -5,7 +5,8 @@ function Body($scope) {
 	function Cloudant(method, path) {
 		return $.ajax({
 			method: method,
-			url: "https://" + $scope.user + ":" + $scope.pass + "@" + $scope.domain + ".cloudant.com" + path
+			headers: { Authorization : "Basic " + btoa($scope.user + ":" + $scope.pass) },
+			url: "https://" + $scope.domain + ".cloudant.com" + path
 		});
 	}
 

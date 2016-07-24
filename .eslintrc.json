@@ -47,8 +47,6 @@
         "indent": "off",
         "init-declarations": "error",
         "jsx-quotes": "error",
-        "key-spacing": "error",
-        "keyword-spacing": "error",
         "linebreak-style": [
             "error",
             "windows"
