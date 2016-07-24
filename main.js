@@ -39,7 +39,7 @@ function Body($scope) {
 			PromiseMonaco.then((monaco) => {
 				monaco.editor.create(document.getElementById('container'), {
 					language: 'json',
-					value: data
+					value: JSON.stringify(data)
 				});
 			});
 		});
