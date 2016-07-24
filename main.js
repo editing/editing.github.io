@@ -6,7 +6,7 @@ function Body($scope) {
 		return $.get({
 			method:method,
 			headers: { Authorization : "Basic " + btoa($scope.user + ":" + $scope.pass) },
-			url: "https://" + $scope.domain + ".cloudant.com" + encodeURIComponent(path)
+			url: "https://" + $scope.domain + ".cloudant.com" + encodeURI(path)
 		});
 	}
 
