@@ -12,7 +12,6 @@
         "array-callback-return": "error",
         "block-scoped-var": "error",
         "block-spacing": "error",
-        "brace-style": "error",
         "callback-return": "error",
         "camelcase": "error",
         "comma-dangle": "error",
@@ -78,7 +77,6 @@
         "no-lone-blocks": "error",
         "no-lonely-if": "error",
         "no-loop-func": "error",
-        "no-magic-numbers": "error",
         "no-mixed-operators": "error",
         "no-mixed-requires": "error",
         "no-multi-spaces": "error",
@@ -132,11 +130,6 @@
         "no-warning-comments": "error",
         "no-whitespace-before-property": "error",
         "no-with": "error",
-        "object-curly-newline": "error",
-        "object-curly-spacing": [
-            "error",
-            "always"
-        ],
         "operator-assignment": "error",
         "operator-linebreak": "error",
         "padded-blocks": "off",

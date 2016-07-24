@@ -17,6 +17,8 @@ function Body($scope) {
 		});
 	}
 
+	/** @type {monaco.editor.IStandaloneCodeEditor} */
+	var editor;
 	$scope.login = function () {
 		Cloudant("GET", "/_users/_all_docs?startkey=\"_design/\"&endkey=\"_design/\uFFFF\"").then((data, status) => {
 			$scope.status = status;
@@ -28,12 +30,15 @@ function Body($scope) {
 			$scope.status = status;
 			$scope.$apply();
 		}).then((data) => {
+			if (!editor)
+			{
+				editor = monaco.editor.create(document.getElementById('container'), { language: 'json' });
+				editor.getModel().detectIndentation(false,4);
+			}
+
 			return PromiseMonaco.then(data);
 		}, (err) => console.error(err)).then((data) => {
-			monaco.editor.create(document.getElementById('container'), {
-				language: 'json',
-				value: JSON.stringify(data)
-			});
+			editor.setValue(JSON.stringify(data));
 		});
 	};
 }
