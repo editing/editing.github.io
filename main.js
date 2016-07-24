@@ -1,4 +1,16 @@
-/* global $,monaco */
+/* global $,monaco,require */
+
+require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+var monacoInstance;
+var PromiseMonaco = new Promise((resolve) => {
+	if (monacoInstance)
+		return resolve(monacoInstance);
+
+	return require(['vs/editor/editor.main'], function () {
+		monacoInstance = monaco;
+		resolve(monacoInstance);
+	});
+});
 
 /* exported */
 function Body($scope) {
@@ -15,14 +27,18 @@ function Body($scope) {
 			$scope.status = status;
 			$scope.$apply();
 
-			var editor = monaco.editor.create(document.getElementById('container'), {
-				language: 'json',
-				value: data
-			});
+			return data;
 		}, (req, status, err) => {
 			console.error(err);
 			$scope.status = status;
 			$scope.$apply();
+		}).then((data) => {
+			PromiseMonaco.then((monaco) => {
+				monaco.editor.create(document.getElementById('container'), {
+					language: 'json',
+					value: data
+				});
+			});
 		});
 	};
 }

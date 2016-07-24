@@ -27,7 +27,6 @@
         "computed-property-spacing": "error",
         "consistent-return": "error",
         "consistent-this": "error",
-        "curly": "error",
         "default-case": "error",
         "dot-location": "error",
         "dot-notation": "error",
@@ -38,14 +37,12 @@
             "never"
         ],
         "generator-star-spacing": "error",
-        "global-require": "error",
         "guard-for-in": "error",
         "handle-callback-err": "error",
         "id-blacklist": "error",
         "id-length": "error",
         "id-match": "error",
         "indent": "off",
-        "init-declarations": "error",
         "jsx-quotes": "error",
         "linebreak-style": [
             "error",
