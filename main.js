@@ -1,15 +1,18 @@
 /* global $,monaco,require */
 
-require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+var resolver;
 var monacoInstance;
-var PromiseMonaco = new Promise((resolve) => {
-	if (monacoInstance)
-		return resolve(monacoInstance);
+require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+require(['vs/editor/editor.main'], function () {
+	monacoInstance = monaco;
+	if (resolver)
+		resolver(monacoInstance);
+});
 
-	return require(['vs/editor/editor.main'], function () {
-		monacoInstance = monaco;
+var PromiseMonaco = new Promise((resolve) => {
+	resolver = resolve;
+	if (monacoInstance)
 		resolve(monacoInstance);
-	});
 });
 
 /* exported */

@@ -140,8 +140,6 @@
             "error",
             "always"
         ],
-        "one-var": "error",
-        "one-var-declaration-per-line": "error",
         "operator-assignment": "error",
         "operator-linebreak": "error",
         "padded-blocks": "off",
@@ -164,7 +162,6 @@
             "never"
         ],
         "valid-jsdoc": "error",
-        "vars-on-top": "error",
         "wrap-iife": "error",
         "wrap-regex": "error",
         "yield-star-spacing": "error",
