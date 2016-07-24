@@ -32,7 +32,7 @@ function Body($scope) {
 			$scope.$apply();
 		}).then((data) => {
 			return Promise.all([PromiseMonaco, data]);
-		}, (err) => console.error(err)).then((monaco, data) => {
+		}, (err) => console.error(err)).then(([monaco, data]) => {
 			monaco.editor.create(document.getElementById('container'), {
 				language: 'json',
 				value: JSON.stringify(data)
