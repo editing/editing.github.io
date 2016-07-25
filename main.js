@@ -10,11 +10,21 @@ var editor;
 /* exported */
 function Body($scope,$http) {
 	
+	$scope.openFile = function(file){
+		editor.setValue(JSON.stringify(result,null,"\t"));
+	};
+	
 	$scope.loadBranches = function(repo){
 		return $http({
 			method:"GET",
 			url:"https://api.github.com/repos/" + repo.full_name + "/branches?access_token=" + $scope.credential.accessToken
-		},(error) => console.error(error)).then((response) => $scope.branches = response.data);
+		},(error) => console.error(error)).then((response) => {
+			$scope.branches = response.data;
+			return $http({
+				method:"GET",
+				url:"https://api.github.com/repos/" + repo.full_name + "/contents?access_token=" + $scope.credential.accessToken
+			});
+		});
 	}
 	
 	$scope.loadBranch = function(branch){
