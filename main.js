@@ -14,20 +14,14 @@ function Body($scope,$http) {
 		return $http({
 			method:"GET",
 			url:"https://api.github.com/repos/" + repo.full_name + "/branches?access_token=" + $scope.credential.accessToken
-		}).then((response) => {
-			$scope.branches = response.data;
-			$scope.$apply();
-		});
+		}).then((response) => $scope.branches = response.data);
 	}
 	
 	$scope.loadBranch = function(branch){
 		return $http({
 			method:"GET",
 			url:"https://api.github.com/repos/" + $scope.repo.full_name + "/branches/" + branch.name + "?access_token=" + $scope.credential.accessToken
-		}).then((response) => {
-			$scope.branchData = response.data;
-			$scope.$apply();
-		});
+		}).then((response) => $scope.branchData = response.data);
 	}
 
 	/** @type {monaco.editor.IStandaloneCodeEditor} */
