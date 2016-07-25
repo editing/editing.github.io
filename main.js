@@ -16,6 +16,12 @@ function Body($scope) {
 		if(!credential || !credential.user)
 			throw firebase.auth().signInWithRedirect(provider);
 		
+		if(sessionStorage.redirect)
+		{
+			history.pushState(sessionStorage.redirect);
+			delete sessionStorage.redirect;
+		}
+		
 		return PromiseMonaco.then(() => credential);
 	},(error) => {
 		console.error(error);
