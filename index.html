@@ -41,6 +41,11 @@
 	<script>
 		angular.module("app",["ngMaterial"]).controller("body",Body);
 	</script>
+        <md-select ng-model="repo" placeholder="repositories" ng-change="loadRepo()">
+          <md-option ng-repeat="repo in repos" value="{{repo.full_name}}">
+            {{repo.full_name}}
+          </md-option>
+        </md-select>
 	<div layout="row">
 		<div layout="column" style="width:300px">
 			<div id="row" ng-repeat="repo in repos track by $index">
