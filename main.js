@@ -1,4 +1,4 @@
-/* global monaco:monaco,require:require,firebase:firebase */
+/* global $,monaco:monaco,require:require,firebase:firebase */
 
 require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' } });
 var PromiseMonaco = new Promise((resolve) => {
@@ -8,12 +8,14 @@ var PromiseMonaco = new Promise((resolve) => {
 var editor;
 
 /* exported */
-function Body($scope) {
+function Body($scope,$http) {
 
 	/** @type {monaco.editor.IStandaloneCodeEditor} */
 	var provider = new firebase.auth.GithubAuthProvider();
-	firebase.auth().getRedirectResult().then((credential) => {
-		if(!credential || !credential.user)
+	provider.addScope('repo');
+	
+	firebase.auth().getRedirectResult().then((result) => {
+		if(!result || !result.user)
 			throw firebase.auth().signInWithRedirect(provider);
 		
 		if(sessionStorage.redirect)
@@ -22,7 +24,7 @@ function Body($scope) {
 			delete sessionStorage.redirect;
 		}
 		
-		return PromiseMonaco.then(() => credential);
+		return PromiseMonaco.then(() => result);
 	},(error) => {
 		console.error(error);
 		signInWithRedirect(provider);
@@ -33,5 +35,14 @@ function Body($scope) {
 		}
 
 		editor.setValue(JSON.stringify(result,null,"\t"));
+		
+		$scope.credential	= result.credential;
+		return $http({
+			method:"GET",
+			url:"https://api.github.com/user/repos?access_token=" + result.credential.accessToken
+		});
+	},(error) => console.error(error)).then((response) => {
+		$scope.repos = JSON.parse(response.data);
+		$scope.$apply();		
 	});
 }
