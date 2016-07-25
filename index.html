@@ -42,11 +42,13 @@
 		angular.module("app",["ngMaterial"]).controller("body",Body);
 	</script>
 	<div layout="row">
-		<div layout="column">
-			<div id="hierachy" style="width:200px;height:500px;border:1px solid grey"></div>
+		<div layout="column" style="width:300px">
+			<div id="row" ng-repeat="repo in repos track by $index">
+				{{repo.full_name}}
+			</div>
 		</div>
 		<div layout="column">
-			<div id="container" style="width:800px;height:500px;border:1px solid grey"></div>
+			<div id="container" style="width:900px;height:500px;border:1px solid grey"></div>
 		</div>
 	</div>
 	</div>
