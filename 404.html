@@ -1,7 +1,8 @@
 <html>
   <head>
     <script>
-      location.replace("/?path=" + location.pathname + location.search);
+      sessionStorage.redirect = location.href;
+      location = '/'
     </script>
   </head>
 </html>
