@@ -14,7 +14,7 @@ function Body($scope) {
 	var provider = new firebase.auth.GithubAuthProvider();
 	firebase.auth().getRedirectResult().then((credential) => {
 		if(!credential || !credential.user)
-			firebase.auth().signInWithRedirect(provider);
+			throw firebase.auth().signInWithRedirect(provider);
 		
 		return PromiseMonaco.then(() => credential);
 	},(error) => {
