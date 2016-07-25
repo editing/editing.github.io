@@ -32,7 +32,7 @@
 	<!-- Angular Material Library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js">
 
-    <script src="/node_modules/requirejs/require.js"></script>
+	<script src="/node_modules/requirejs/require.js"></script>
 	<script src="/node_modules/monaco-editor/min/vs/loader.js"></script>
 	<script src="main.js"></script>
 </head>
@@ -41,19 +41,28 @@
 	<script>
 		angular.module("app",["ngMaterial"]).controller("body",Body);
 	</script>
-        <md-select ng-model="repo" placeholder="repositories" ng-change="loadRepo()">
-          <md-option ng-repeat="repo in repos" value="{{repo.full_name}}">
-            {{repo.full_name}}
-          </md-option>
-        </md-select>
 	<div layout="row">
-		<div layout="column" style="width:300px">
-			<div id="row" ng-repeat="repo in repos track by $index">
-				{{repo.full_name}}
-			</div>
+		<div layout="row">
+		        <md-select layout="column" style="width:300px" ng-model="repo" placeholder="repositories" ng-change="loadBranches(repo)">
+		          <md-option ng-repeat="repo in repos track by $index" ng-value="repo">
+		            {{repo.full_name}}
+		          </md-option>
+		        </md-select>
+		        <md-select layout="column" style="width:300px" ng-model="branch" placeholder="branches" ng-change="loadBranch(branch)">
+		          <md-option ng-repeat="branch in branches track by $index" ng-value="branch">
+		            {{branch.full_name}}
+		          </md-option>
+		        </md-select>
 		</div>
-		<div layout="column">
-			<div id="container" style="width:900px;height:500px;border:1px solid grey"></div>
+		<div layout="row" style="height:600px">
+			<div layout="column" style="width:300px;border:1px solid grey">
+				<ul>
+					<li ng-repeat="file in files track by $index">{{$index}}</li>
+				</ul>
+			</div>
+			<div layout="column" style="width:900px;border:1px solid grey">
+				<div id="container"></div>
+			</div>
 		</div>
 	</div>
 	</div>
