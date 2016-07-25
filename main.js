@@ -11,7 +11,7 @@ var editor;
 function Body($scope,$http) {
 	
 	$scope.openFile = function(file){
-		editor.setValue(JSON.stringify(result,null,"\t"));
+		editor.setValue(JSON.stringify(file,null,"\t"));
 	};
 	
 	$scope.loadBranches = function(repo){
