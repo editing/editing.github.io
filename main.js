@@ -12,8 +12,9 @@ function Body($scope,$http) {
 
 	/** @type {monaco.editor.IStandaloneCodeEditor} */
 	var provider = new firebase.auth.GithubAuthProvider();
+	provider.addScope('read:org');
 	provider.addScope('repo');
-	
+
 	firebase.auth().getRedirectResult().then((result) => {
 		if(!result || !result.user)
 			throw firebase.auth().signInWithRedirect(provider);
