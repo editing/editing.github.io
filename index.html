@@ -56,7 +56,7 @@
 	<div layout="row" style="height:600px">
 		<div layout="column" style="width:300px;border:1px solid grey">
 			<ul>
-				<li ng-repeat="file in commit.files track by $index">{{$index}}</li>
+				<li ng-repeat="file in commit.files track by $index">{{file.filename}}</li>
 			</ul>
 		</div>
 		<div layout="column" style="width:900px;border:1px solid grey">
