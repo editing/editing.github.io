@@ -12,7 +12,7 @@ function Body($scope) {
 	var editor;
 	$scope.login = function () {
 		var provider = new firebase.auth.GithubAuthProvider();
-		firebase.auth().signInWithPopup(provider).then((result) => {
+		firebase.auth().signInWithRedirect(provider).then((result) => {
 			return PromiseMonaco.then(() => result);
 		}, (err) => console.error(err)).then((result) => {
 			if (!editor) {
