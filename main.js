@@ -42,7 +42,7 @@ function Body($scope,$http) {
 			url:"https://api.github.com/user/repos?access_token=" + result.credential.accessToken
 		});
 	},(error) => console.error(error)).then((response) => {
-		$scope.repos = JSON.parse(response.data);
+		$scope.repos = response.data;
 		$scope.$apply();		
 	});
 }
