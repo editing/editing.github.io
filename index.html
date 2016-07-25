@@ -53,16 +53,14 @@
 	          </md-option>
 	        </md-select>
 	</div>
-	<div layout="row" style="height:600px">
-		<div layout="column" style="width:300px;border:1px solid grey">
+	<div layout="row">
+		<div layout="column" style="width:300px;height:600px;border:1px solid grey">
 			<div layout="row" ng-repeat="file in files track by $index">
 				<md-button ng-if="file.type=='file'" ng-click="openFile(file)">{{file.path}}</md-button>
 				<md-button ng-if="file.type=='dir'">[] {{file.path}}</md-button>
 			</div>
 		</div>
-		<div layout="column" style="width:900px;border:1px solid grey">
-			<div id="container"></div>
-		</div>
+		<div id="container" layout="column" style="width:900px;height:600px;border:1px solid grey"></div>
 	</div>
 </body>
 
