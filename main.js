@@ -22,7 +22,7 @@ function Body($scope) {
 		signInWithRedirect(provider);
 	}).then((result) => {
 		if (!editor) {
-			editor = monaco.editor.create(document.getElementById('container'), { language: 'json' });
+			editor = monaco.editor.create(document.getElementById('container'), { language: 'json',wrappingColumn:-1 });
 			editor.getModel().detectIndentation(false, 4);
 		}
 
