@@ -18,7 +18,7 @@ function Body($scope) {
 		
 		if(sessionStorage.redirect)
 		{
-			history.pushState(sessionStorage.redirect);
+			history.pushState(null,null,sessionStorage.redirect);
 			delete sessionStorage.redirect;
 		}
 		
