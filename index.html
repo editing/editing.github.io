@@ -42,29 +42,26 @@
 		angular.module("app",["ngMaterial"]).controller("body",Body);
 	</script>
 	<div layout="row">
-		<div layout="row">
-		        <md-select layout="column" style="width:300px" ng-model="repo" placeholder="repositories" ng-change="loadBranches(repo)">
-		          <md-option ng-repeat="repo in repos track by $index" ng-value="repo">
-		            {{repo.full_name}}
-		          </md-option>
-		        </md-select>
-		        <md-select layout="column" style="width:300px" ng-model="branch" placeholder="branches" ng-change="loadBranch(branch)">
-		          <md-option ng-repeat="branch in branches track by $index" ng-value="branch">
-		            {{branch.full_name}}
-		          </md-option>
-		        </md-select>
-		</div>
-		<div layout="row" style="height:600px">
-			<div layout="column" style="width:300px;border:1px solid grey">
-				<ul>
-					<li ng-repeat="file in files track by $index">{{$index}}</li>
-				</ul>
-			</div>
-			<div layout="column" style="width:900px;border:1px solid grey">
-				<div id="container"></div>
-			</div>
-		</div>
+	        <md-select layout="column" style="width:300px" ng-model="repo" placeholder="repositories" ng-change="loadBranches(repo)">
+	          <md-option ng-repeat="repo in repos track by $index" ng-value="repo">
+	            {{repo.full_name}}
+	          </md-option>
+	        </md-select>
+	        <md-select layout="column" style="width:300px" ng-model="branch" placeholder="branches" ng-change="loadBranch(branch)">
+	          <md-option ng-repeat="branch in branches track by $index" ng-value="branch">
+	            {{branch.full_name}}
+	          </md-option>
+	        </md-select>
 	</div>
+	<div layout="row" style="height:600px">
+		<div layout="column" style="width:300px;border:1px solid grey">
+			<ul>
+				<li ng-repeat="file in files track by $index">{{$index}}</li>
+			</ul>
+		</div>
+		<div layout="column" style="width:900px;border:1px solid grey">
+			<div id="container"></div>
+		</div>
 	</div>
 </body>
 
