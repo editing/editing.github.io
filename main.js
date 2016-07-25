@@ -23,9 +23,12 @@ function Body($scope,$http) {
 			url:"https://api.github.com/repos/" + $scope.repo.full_name + "/branches/" + branch.name + "?access_token=" + $scope.credential.accessToken
 		},(error) => console.error(error)).then((response) => {
 			$scope.branchData = response.data;
-			return $http({method:"GET",url:$scope.branchData.commit.url});
+			return $http({
+				method:"GET",
+				url:"https://api.github.com/repos/" + $scope.repo.full_name + "/contents?access_token=" + $scope.credential.accessToken
+			});
 		},(error) => console.error(error)).then((response) => {
-			$scope.commit = response.data;
+			$scope.files = response.data;
 		});
 	}
 
