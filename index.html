@@ -55,7 +55,7 @@
 	</div>
 	<script type="text/ng-template" id="tree">
 		{{file.path}}
-		<ul ng-if="file.type=='dir'">
+		<ul ng-if="file.type=='dir'" ng-init="files = file.files">
 			<li ng-repeat="file in files track by $index" ng-include="'tree'"></li>
 		</ul>
 	</script>
