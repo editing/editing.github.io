@@ -48,7 +48,7 @@
 		.clt li::before, .clt li::after {
 		    content: "";
 		    position: absolute;
-		    left: -3px;
+		    left: -1ex;
 		}
 		
 		.clt li::before {
@@ -88,7 +88,7 @@
 	        </md-select>
 	</div>
 	<div layout="row">
-		<div class="ctl" layout="column" style="width:300px;height:600px;border:1px solid grey">
+		<div class="clt" layout="column" style="width:300px;height:600px;border:1px solid grey">
 			<script type="text/ng-template" id="tree">
 				<md-checkbox ng-model="file.selected">{{file.path}}</md-checkbox>
 				<ul ng-if="file.type=='dir'" ng-init="files = file.files">
