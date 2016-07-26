@@ -60,11 +60,11 @@
 		</ul>
 	</script>
 	<div layout="row">
-		<ul>
+		<ul layout="column">
 			<li ng-repeat="file in files track by $index" ng-include="'tree'"></li>
 		</ul>
+		<div id="container" layout="column" style="width:900px;height:600px;border:1px solid grey"></div>
 	</div>
-	<div id="container" layout="column" style="width:900px;height:600px;border:1px solid grey"></div>
 
 </body>
 
