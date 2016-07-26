@@ -35,6 +35,40 @@
 	<script src="/node_modules/requirejs/require.js"></script>
 	<script src="/node_modules/monaco-editor/min/vs/loader.js"></script>
 	<script src="main.js"></script>
+	<style>
+		.clt, .clt ul, .clt li {
+		     position: relative;
+		}
+		
+		.clt ul {
+		    list-style: none;
+		    padding-left: 1em;
+		}
+		
+		.clt li::before, .clt li::after {
+		    content: "";
+		    position: absolute;
+		    left: -3px;
+		}
+		
+		.clt li::before {
+		    border-top: 1px solid #000;
+		    top: 9px;
+		    width: 8px;
+		    height: 0;
+		}
+		
+		.clt li::after {
+		    border-left: 1px solid #000;
+		    height: 100%;
+		    width: 0px;
+		    top: 2px;
+		}
+		
+		.clt ul > li:last-child::after {
+		    height: 8px;
+		}
+	</style>
 </head>
 
 <body ng-controller="body">
@@ -53,14 +87,14 @@
 	          </md-option>
 	        </md-select>
 	</div>
-	<script type="text/ng-template" id="tree">
-		<md-checkbox ng-model="file.selected">{{file.path}}</md-checkbox>
-		<ul ng-if="file.type=='dir'" ng-init="files = file.files">
-			<li ng-repeat="file in files track by $index" ng-include="'tree'"></li>
-		</ul>
-	</script>
 	<div layout="row">
-		<div layout="column" style="width:300px;height:600px;border:1px solid grey">
+		<div class="ctl" layout="column" style="width:300px;height:600px;border:1px solid grey">
+			<script type="text/ng-template" id="tree">
+				<md-checkbox ng-model="file.selected">{{file.path}}</md-checkbox>
+				<ul ng-if="file.type=='dir'" ng-init="files = file.files">
+					<li ng-repeat="file in files track by $index" ng-include="'tree'"></li>
+				</ul>
+			</script>
 			<ul>
 				<li ng-repeat="file in files | orderBy:'type' track by $index" ng-include="'tree'"></li>
 			</ul>
