@@ -48,10 +48,10 @@ function Body($scope,$http,$location) {
 
 		editor.setValue(JSON.stringify(result,null,"\t"));
 		
-		$scope.credential	= result.credential;
+		$scope.credential	= result;
 		return $http({
 			method:"GET",
-			url:"https://api.github.com/user/repos?access_token=" + result.credential.accessToken
+			url:"https://api.github.com/user/repos?access_token=" + $scope.credential.accessToken
 		});
 	},(error) => console.error(error)).then((response) => {
 		$scope.repos = response.data;
