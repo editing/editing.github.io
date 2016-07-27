@@ -57,6 +57,13 @@
 		.clt ul > li:last-child::after {
 		    height: 8px;
 		}
+		
+		.clt md-checkbox , .clt md-radio-button {
+		    width: 6px;
+		    height: 6px;
+		    min-width: 5px;
+		    min-height: 5px;
+		}
 	</style>
 </head>
 
@@ -81,18 +88,20 @@
 	<div layout="row">
 		<div class="clt" layout="column" style="width:300px;height:600px;border:1px solid grey">
 			<script type="text/ng-template" id="tree">
-				<md-checkbox ng-model="file.selected">{{file.path}}</md-checkbox>
-				<ul ng-if="file.type=='dir'" ng-init="files = file.files">
+				<md-radio-button ng-if="file.type=='file'" ng-value="file">{{file.path}}</md-radio-button>
+				<md-checkbox ng-if="file.type=='dir'" ng-model="file.opened">{{file.path}}</md-checkbox>
+				<ul ng-if="file.type=='dir' && file.opened" ng-init="files = file.files">
 					<li ng-repeat="file in files track by $index" ng-include="'tree'"></li>
 				</ul>
 			</script>
 			<ul>
-				<li ng-repeat="file in files | orderBy:'type' track by $index" ng-include="'tree'"></li>
+				<md-radio-group ng-model="selectedFile">
+					<li ng-repeat="file in files | orderBy:'type' track by $index" ng-include="'tree'"></li>
+				</md-radio-group>
 			</ul>
 		</div>
 		<div id="container" layout="column" style="width:900px;height:600px;border:1px solid grey"></div>
 	</div>
-
 </body>
 
 </html>
