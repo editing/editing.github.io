@@ -61,7 +61,9 @@
 
 <body ng-controller="body">
 	<script>
-		angular.module("app",["ngMaterial"]).controller("body",Body);
+		angular.module("app",["ngMaterial"]).config(($locationProvider) => {
+			$locationProvider.html5Mode(true);
+		}).controller("body",Body);
 	</script>
 	<div layout="row">
 	        <md-select layout="column" style="width:300px" ng-model="repo" placeholder="repositories" ng-change="loadBranches(repo)">
