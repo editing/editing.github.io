@@ -2,6 +2,7 @@
 <html ng-app="app">
 
 <head>
+	<base href="/">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
@@ -60,7 +61,6 @@
 </head>
 
 <body ng-controller="body">
-	<base href="/">
 	<script>
 		angular.module("app",["ngMaterial"]).config(($locationProvider) => {
 			$locationProvider.html5Mode(true);
