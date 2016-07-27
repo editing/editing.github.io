@@ -12,7 +12,7 @@ function Body($scope,$http,$location) {
 
 	var githubAccess = new Promise((resolve,reject) => {
 		if(sessionStorage.github)
-			return resolve(sessionStorage.github);
+			return resolve(JSON.parse(sessionStorage.github));
 
 		if(!$location.search().code)
 		{
@@ -27,8 +27,8 @@ function Body($scope,$http,$location) {
 			method: 'GET',
 			url: "https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec?" + $.param({code:$location.search().code})
 		}).then((response) => {
-			sessionStorage.github	= response.data;
-			resolve(sessionStorage.github);
+			sessionStorage.github	= JSON.stringify(response.data);
+			resolve(response.data);
 		},(response) => {
 			reject(response);
 		});
