@@ -32,6 +32,30 @@ function Body($scope,$http,$location) {
 		},(response) => {
 			return console.error(response);
 		});
+	}).then((result) => {
+		if(sessionStorage.redirect)
+		{
+			history.pushState(null,null,sessionStorage.redirect);
+			delete sessionStorage.redirect;
+		}
+		
+		return PromiseMonaco.then(() => result);
+	},(error) => console.error(error)).then((result) => {
+		if (!editor) {
+			editor = monaco.editor.create(document.getElementById('container'), { language: 'json',wrappingColumn:-1 });
+			editor.getModel().detectIndentation(false, 4);
+		}
+
+		editor.setValue(JSON.stringify(result,null,"\t"));
+		
+		$scope.credential	= result.credential;
+		return $http({
+			method:"GET",
+			url:"https://api.github.com/user/repos?access_token=" + result.credential.accessToken
+		});
+	},(error) => console.error(error)).then((response) => {
+		$scope.repos = response.data;
+		$scope.$apply();
 	});
 
 	$scope.openFile = function(file){
@@ -65,31 +89,4 @@ function Body($scope,$http,$location) {
 			$scope.files = response.data;
 		});
 	}
-
-	/** @type {monaco.editor.IStandaloneCodeEditor} */
-	githubAccess.then((result) => {
-		if(sessionStorage.redirect)
-		{
-			history.pushState(null,null,sessionStorage.redirect);
-			delete sessionStorage.redirect;
-		}
-		
-		return PromiseMonaco.then(() => result);
-	},(error) => console.error(error)).then((result) => {
-		if (!editor) {
-			editor = monaco.editor.create(document.getElementById('container'), { language: 'json',wrappingColumn:-1 });
-			editor.getModel().detectIndentation(false, 4);
-		}
-
-		editor.setValue(JSON.stringify(result,null,"\t"));
-		
-		$scope.credential	= result.credential;
-		return $http({
-			method:"GET",
-			url:"https://api.github.com/user/repos?access_token=" + result.credential.accessToken
-		});
-	},(error) => console.error(error)).then((response) => {
-		$scope.repos = response.data;
-		$scope.$apply();
-	});
 }
