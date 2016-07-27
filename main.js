@@ -1,4 +1,4 @@
-/* global $,monaco:monaco,require:require,firebase:firebase */
+/* global $,monaco:monaco,require:require */
 
 require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' } });
 var PromiseMonaco = new Promise((resolve) => {
@@ -8,8 +8,24 @@ var PromiseMonaco = new Promise((resolve) => {
 var editor;
 
 /* exported */
-function Body($scope,$http) {
-	
+function Body($scope,$http,$location) {
+
+	var githubAccess = new Promise((resolve,reject) => {
+		if(sessionStorage.github)
+			return sessionStorage.github;
+
+		if(!$location.search().code)
+		{
+			return window.location.replace("https://github.com/login/oauth/authorize" + $.param({
+				client_id:"ffd870f6f6fdfa493534",scope:"repo,read:org"
+			}));
+		}
+
+		return $http("https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec" + $.param({
+			code:$location.search().code
+		}));
+	});
+
 	$scope.openFile = function(file){
 		editor.setValue(JSON.stringify(file,null,"\t"));
 	};
@@ -43,14 +59,7 @@ function Body($scope,$http) {
 	}
 
 	/** @type {monaco.editor.IStandaloneCodeEditor} */
-	var provider = new firebase.auth.GithubAuthProvider();
-	provider.addScope('read:org');
-	provider.addScope('repo');
-
-	firebase.auth().getRedirectResult().then((result) => {
-		if(!result || !result.user)
-			throw firebase.auth().signInWithRedirect(provider);
-		
+	githubAccess.then((result) => {
 		if(sessionStorage.redirect)
 		{
 			history.pushState(null,null,sessionStorage.redirect);
@@ -58,10 +67,7 @@ function Body($scope,$http) {
 		}
 		
 		return PromiseMonaco.then(() => result);
-	},(error) => {
-		console.error(error);
-		signInWithRedirect(provider);
-	}).then((result) => {
+	},(error) => console.error(error)).then((result) => {
 		if (!editor) {
 			editor = monaco.editor.create(document.getElementById('container'), { language: 'json',wrappingColumn:-1 });
 			editor.getModel().detectIndentation(false, 4);
