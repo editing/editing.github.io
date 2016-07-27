@@ -23,7 +23,14 @@ function Body($scope,$http,$location) {
 			}));
 		}
 
-		return $http({ method: 'GET',url: "https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec?" + $.param({code:$location.search().code})});
+		return $http({
+			method: 'GET',
+			url: "https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec?" + $.param({code:$location.search().code})
+		}).then((response) => {
+			return response;
+		},(response) => {
+			return console.error(response);
+		});
 	});
 
 	$scope.openFile = function(file){
