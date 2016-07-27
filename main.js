@@ -51,7 +51,7 @@ function Body($scope,$http,$location) {
 		$scope.credential	= result;
 		return $http({
 			method:"GET",
-			url:"https://api.github.com/user/repos?access_token=" + $scope.credential.accessToken
+			url:"https://api.github.com/user/repos?access_token=" + $scope.credential.access_token
 		});
 	},(error) => console.error(error)).then((response) => {
 		$scope.repos = response.data;
@@ -65,12 +65,12 @@ function Body($scope,$http,$location) {
 	$scope.loadBranches = function(repo){
 		return $http({
 			method:"GET",
-			url:"https://api.github.com/repos/" + repo.full_name + "/branches?access_token=" + $scope.credential.accessToken
+			url:"https://api.github.com/repos/" + repo.full_name + "/branches?access_token=" + $scope.credential.access_token
 		},(error) => console.error(error)).then((response) => {
 			$scope.branches = response.data;
 			return $http({
 				method:"GET",
-				url:"https://api.github.com/repos/" + repo.full_name + "/contents?access_token=" + $scope.credential.accessToken
+				url:"https://api.github.com/repos/" + repo.full_name + "/contents?access_token=" + $scope.credential.access_token
 			});
 		});
 	}
@@ -78,12 +78,12 @@ function Body($scope,$http,$location) {
 	$scope.loadBranch = function(branch){
 		return $http({
 			method:"GET",
-			url:"https://api.github.com/repos/" + $scope.repo.full_name + "/branches/" + branch.name + "?access_token=" + $scope.credential.accessToken
+			url:"https://api.github.com/repos/" + $scope.repo.full_name + "/branches/" + branch.name + "?access_token=" + $scope.credential.access_token
 		},(error) => console.error(error)).then((response) => {
 			$scope.branchData = response.data;
 			return $http({
 				method:"GET",
-				url:"https://api.github.com/repos/" + $scope.repo.full_name + "/contents?access_token=" + $scope.credential.accessToken
+				url:"https://api.github.com/repos/" + $scope.repo.full_name + "/contents?access_token=" + $scope.credential.access_token
 			});
 		},(error) => console.error(error)).then((response) => {
 			$scope.files = response.data;
