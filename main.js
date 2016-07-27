@@ -18,8 +18,8 @@ function Body($scope,$http,$location) {
 		{
 			return window.location.replace("https://github.com/login/oauth/authorize?" + $.param({
 				client_id:"ffd870f6f6fdfa493534",
-				scope:"repo,read:org"
-				redirect_uri:window.location.href,
+				scope:"repo,read:org",
+				redirect_uri:window.location.href
 			}));
 		}
 
