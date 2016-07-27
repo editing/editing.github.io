@@ -11,9 +11,6 @@ var editor;
 function Body($scope,$http,$location) {
 
 	var githubAccess = new Promise((resolve,reject) => {
-		if(sessionStorage.github)
-			return resolve(JSON.parse(sessionStorage.github));
-
 		if(!$location.search().code)
 		{
 			return window.location.replace("https://github.com/login/oauth/authorize?" + $.param({
@@ -27,18 +24,17 @@ function Body($scope,$http,$location) {
 			method: 'GET',
 			url: "https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec?" + $.param({code:$location.search().code})
 		}).then((response) => {
-			sessionStorage.github	= JSON.stringify(response.data);
 			resolve(response.data);
 		},(response) => {
 			reject(response);
 		});
 	}).then((result) => {
-		if(sessionStorage.redirect)
-		{
-			history.pushState(null,null,sessionStorage.redirect);
-			delete sessionStorage.redirect;
-		}
-		
+		if(!sessionStorage.redirect)
+			sessionStorage.redirect	= "/";
+
+		history.pushState(null,null,sessionStorage.redirect);
+		delete sessionStorage.redirect;
+
 		return PromiseMonaco.then(() => result);
 	},(error) => console.error(error)).then((result) => {
 		if (!editor) {
