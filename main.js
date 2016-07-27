@@ -16,12 +16,14 @@ function Body($scope,$http,$location) {
 
 		if(!$location.search().code)
 		{
-			return window.location.replace("https://github.com/login/oauth/authorize" + $.param({
-				client_id:"ffd870f6f6fdfa493534",scope:"repo,read:org"
+			return window.location.replace("https://github.com/login/oauth/authorize?" + $.param({
+				client_id:"ffd870f6f6fdfa493534",
+				scope:"repo,read:org"
+				redirect_uri:window.location.href,
 			}));
 		}
 
-		return $http("https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec" + $.param({
+		return $http("https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec?" + $.param({
 			code:$location.search().code
 		}));
 	});
