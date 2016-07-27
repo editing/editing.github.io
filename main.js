@@ -9,7 +9,8 @@ var editor;
 
 /* exported */
 function Body($scope,$http,$location) {
-	if(!$location.search().code)
+	var code = $location.search().code;
+	if(!code)
 	{
 		return window.location.replace("https://github.com/login/oauth/authorize?" + $.param({
 			client_id:"ffd870f6f6fdfa493534",
@@ -27,7 +28,7 @@ function Body($scope,$http,$location) {
 	var githubAccess = new Promise((resolve,reject) => {
 		$http({
 			method: 'GET',
-			url: "https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec?" + $.param({code:$location.search().code})
+			url: "https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec?" + $.param({code:code})
 		}).then((response) => {
 			resolve(response.data);
 		},(response) => {
