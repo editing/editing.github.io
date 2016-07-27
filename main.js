@@ -12,7 +12,7 @@ function Body($scope,$http,$location) {
 
 	var githubAccess = new Promise((resolve,reject) => {
 		if(sessionStorage.github)
-			return sessionStorage.github;
+			return resolve(sessionStorage.github);
 
 		if(!$location.search().code)
 		{
@@ -23,14 +23,14 @@ function Body($scope,$http,$location) {
 			}));
 		}
 
-		return $http({
+		$http({
 			method: 'GET',
 			url: "https://script.google.com/macros/s/AKfycbxdNleihRMhOxJbvbNdw6iZ8k82YRzVZvU3rE5WcQSKyW3LuWu_/exec?" + $.param({code:$location.search().code})
 		}).then((response) => {
 			sessionStorage.github	= response.data;
-			return response;
+			resolve(sessionStorage.github);
 		},(response) => {
-			return console.error(response);
+			reject(response);
 		});
 	}).then((result) => {
 		if(sessionStorage.redirect)
