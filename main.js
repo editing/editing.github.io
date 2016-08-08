@@ -71,6 +71,32 @@ function Body($scope,$http,$location) {
 		});
 	}
 	
+	function InitFile(file){
+		file.open = () => {
+			if(file.type == "dir")
+			{
+				return Promise.resolve().then(() => {
+					if(!file.files)
+						return $http({method:"GET",url:file.url}).then((response) => {
+							file.files = response.data;
+							file.files.forEach((f) => InitFile(f));
+						});
+				}).then(() => file.opened = !file.opened);
+			}
+			
+			if(file.type == "file")
+			{
+				return Promise.resolve().then(() => {
+					if(!file.content)
+						return $http({method:"GET",url:file.download_url}).then((response) => file.content = response.data);
+				}).then(() => {
+					$scope.focus = file;
+					editor.setValue(file.content);
+				});
+			}
+		};
+	}
+	
 	$scope.loadBranch = function(branch){
 		return $http({
 			method:"GET",
@@ -83,6 +109,12 @@ function Body($scope,$http,$location) {
 			});
 		},(error) => console.error(error)).then((response) => {
 			$scope.files = response.data;
+			$scope.files.forEach((file) => {
+				if(file.type == "dir")
+				{
+					file.open = () => ;
+				}
+			});
 		});
 	}
 }
