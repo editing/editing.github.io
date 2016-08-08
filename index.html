@@ -98,7 +98,7 @@
 			<script type="text/ng-template" id="tree">
 				<md-radio-button ng-if="file.type=='file'" ng-value="file">{{file.path}}</md-radio-button>
 				<md-button ng-if="file.type=='dir'" ng-click="file.opened=!file.opened" style="margin: 0px; padding: 0px; line-height: initial;min-width:initial; min-height:initial;text-transform:none">
-					{{file.opened ? "&#8863;":"&#8862;"}}{{file.path}}({{file}})
+					{{file.opened ? "&#8863;":"&#8862;"}}{{file.path}}
 				</md-button>
 				<ul ng-if="file.opened" ng-init="files = file.files">
 					<li ng-repeat="file in files track by $index" ng-include="'tree'"></li>
