@@ -97,7 +97,7 @@
 		<div class="clt" layout="column" style="width:300px;height:600px;border:1px solid grey">
 			<script type="text/ng-template" id="tree">
 				<md-radio-button ng-if="file.type=='file'" ng-value="file">{{file.path}}</md-radio-button>
-				<md-button ng-if="file.type=='dir'" ng-click="file.opened=!file.opened" style="margin: 0px; padding: 0px; line-height: 0px; min-height:0px;">
+				<md-button ng-if="file.type=='dir'" ng-click="file.opened=!file.opened" style="margin: 0px; padding: 0px; line-height: 6px; min-height:6px;">
 					{{file.opened ? "&#8863;":"&#8862;"}}{{file.path}}
 				</md-button>
 				<ul ng-if="file.type=='dir' && file.opened" ng-init="files = file.files">
