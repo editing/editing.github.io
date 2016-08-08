@@ -109,12 +109,7 @@ function Body($scope,$http,$location) {
 			});
 		},(error) => console.error(error)).then((response) => {
 			$scope.files = response.data;
-			$scope.files.forEach((file) => {
-				if(file.type == "dir")
-				{
-					file.open = () => ;
-				}
-			});
+			$scope.files.forEach((file) => InitFile(file));
 		});
 	}
 }
