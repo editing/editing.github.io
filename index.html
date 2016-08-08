@@ -96,7 +96,7 @@
 	<div layout="row">
 		<div class="clt" layout="column" style="width:300px;height:600px;border:1px solid grey">
 			<script type="text/ng-template" id="tree">
-				<md-button ng-if="file.type=='dir'" ng-click="file.open()" style="margin: 0px; padding: 0px; line-height: initial;min-width:initial; min-height:initial;text-transform:none">
+				<md-button ng-click="file.open()" style="margin: 0px; padding: 0px; line-height: initial;min-width:initial; min-height:initial;text-transform:none">
 					{{(file.type=='dir' && file.opened) ? "&#8863;":"&#8862;"}}{{file.path}}
 				</md-button>
 				<ul ng-if="file.opened" ng-init="files = file.files">
